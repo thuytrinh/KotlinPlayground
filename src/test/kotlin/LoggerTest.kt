@@ -30,12 +30,10 @@ class LoggerTest {
       logger.stop()
       logger.waitForCompletion()
 
-      // Then
-      println("Asserting...")
+      // Then: all log lines are written into the log file.
       assertThat(logFile).hasContent(
         logLines.joinToString("\n")
       )
-      println("Assertion is done")
     }
   }
 }
