@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
   java
   kotlin("jvm") version "1.4.10"
@@ -20,4 +22,13 @@ dependencies {
 
   testImplementation("junit", "junit", "4.12")
   testImplementation("org.assertj:assertj-core:3.17.2")
+}
+
+tasks.withType<KotlinCompile>().all {
+  kotlinOptions.freeCompilerArgs += listOf(
+    "-Xopt-in=kotlin.time.ExperimentalTime",
+    "-Xopt-in=kotlin.ExperimentalUnsignedTypes",
+    "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+    "-Xopt-in=kotlinx.coroutines.FlowPreview"
+  )
 }
