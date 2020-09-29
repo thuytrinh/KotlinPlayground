@@ -13,7 +13,7 @@ import kotlin.time.milliseconds
 
 class CloseChannelTest {
   @Test
-  fun `close should wait till all sent values are processed`() {
+  fun `close & join should wait till all sent values are processed`() {
     runBlocking {
       // Given
       val channel = BroadcastChannel<Int>(capacity = Channel.BUFFERED)
@@ -44,9 +44,13 @@ class CloseChannelTest {
 
       println("Closing...")
       channel.close()
+      job.join()
 
       // Then
-      assertThat(values).isEmpty()
+      println("Asserting...")
+      assertThat(values).containsExactlyElementsOf(1..10)
+      assertThat(job.isCompleted).isTrue()
+      println("Assertion is done")
     }
   }
 }
