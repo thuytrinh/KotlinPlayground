@@ -31,7 +31,7 @@ class ProvideDeferredTest {
   fun `can inject suspend functions by using Deferred`() = runBlockingTest {
     suspend fun getHelloWorld(): String {
       delay(500.milliseconds)
-      return "Hello, World!"
+      return "Hello, World!".also { println("Done with getHelloWorld()") }
     }
 
     val appScope = this
