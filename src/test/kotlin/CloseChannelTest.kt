@@ -49,7 +49,7 @@ class CloseChannelTest {
       // Then
       println("Asserting...")
       assertThat(values).containsExactlyElementsOf(1..10)
-      assertThat(job.isCompleted).isTrue()
+      assertThat(job.isCompleted).isTrue
       println("Assertion is done")
     }
   }
