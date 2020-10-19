@@ -1,4 +1,4 @@
-package coroutines
+package turbine
 
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOf

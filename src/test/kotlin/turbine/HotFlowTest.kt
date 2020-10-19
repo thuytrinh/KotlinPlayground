@@ -1,4 +1,4 @@
-package coroutines
+package turbine
 
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.channelFlow

@@ -1,3 +1,5 @@
+package koin
+
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.async
 import kotlinx.coroutines.delay

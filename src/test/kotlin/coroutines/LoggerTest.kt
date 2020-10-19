@@ -1,3 +1,5 @@
+package coroutines
+
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.actor
 import org.assertj.core.api.Assertions.assertThat

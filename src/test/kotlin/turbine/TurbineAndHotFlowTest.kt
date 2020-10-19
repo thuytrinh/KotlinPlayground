@@ -1,4 +1,4 @@
-package coroutines
+package turbine
 
 import app.cash.turbine.test
 import kotlinx.coroutines.flow.MutableStateFlow
