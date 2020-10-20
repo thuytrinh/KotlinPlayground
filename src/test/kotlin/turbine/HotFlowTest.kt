@@ -3,6 +3,7 @@ package turbine
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runBlockingTest
@@ -44,6 +45,27 @@ class HotFlowTest {
 
     // Then
     assertThat(job.isCompleted).isFalse
+    job.cancel()
+  }
+
+  @Test
+  fun `should not complete (alternative version)`() = runBlockingTest {
+    // Given
+    val hotFlow = channelFlow {
+      send(0)
+      awaitClose()
+    }
+
+    // When
+    var isCompleted = false
+    val job = launch {
+      hotFlow
+        .onCompletion { isCompleted = true }
+        .collect()
+    }
+
+    // Then
+    assertThat(isCompleted).isFalse
     job.cancel()
   }
 
