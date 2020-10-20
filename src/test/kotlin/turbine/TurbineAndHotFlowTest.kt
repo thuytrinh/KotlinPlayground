@@ -8,12 +8,9 @@ import org.junit.Test
 
 class TurbineAndHotFlowTest {
   @Test
-  fun `should verify emission of StateFlow`() = runBlockingTest {
-    val hotFlow = MutableStateFlow(0)
+  fun `should receive 1, 2 and 3`() = runBlockingTest {
+    val hotFlow = MutableStateFlow(1)
     hotFlow.test {
-      assertThat(expectItem()).isEqualTo(0)
-
-      hotFlow.value = 1
       assertThat(expectItem()).isEqualTo(1)
 
       hotFlow.value = 2

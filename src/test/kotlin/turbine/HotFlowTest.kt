@@ -32,7 +32,7 @@ class HotFlowTest {
   }
 
   @Test
-  fun `is not terminated`() = runBlockingTest {
+  fun `should not complete`() = runBlockingTest {
     // Given
     val hotFlow = channelFlow {
       send(0)

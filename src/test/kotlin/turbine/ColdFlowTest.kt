@@ -23,7 +23,7 @@ class ColdFlowTest {
   }
 
   @Test
-  fun `is terminated`() = runBlockingTest {
+  fun `should complete`() = runBlockingTest {
     // Given
     val coldFlow = flowOf(1, 2, 3)
 
