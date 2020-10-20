@@ -14,7 +14,7 @@ class HotFlowTest {
   @Test
   fun `should receive 1, 2 and 3`() = runBlockingTest {
     // Given
-    val coldFlow = channelFlow {
+    val hotFlow = channelFlow {
       send(1)
       send(2)
       send(3)
@@ -24,7 +24,7 @@ class HotFlowTest {
     // When
     val elements = mutableListOf<Int>()
     val job = launch {
-      coldFlow.toList(elements)
+      hotFlow.toList(elements)
     }
 
     // Then
