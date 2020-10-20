@@ -4,15 +4,13 @@ import app.cash.turbine.test
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.channelFlow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runBlockingTest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 
 class HotFlowWithTurbineTest {
   @Test
-  fun `should receive 1, 2 and 3`() = runBlockingTest {
+  fun `should receive 1, 2, 3 and should not complete`() = runBlockingTest {
     // Given
     val hotFlow = channelFlow {
       send(1)
@@ -46,22 +44,6 @@ class HotFlowWithTurbineTest {
       // Then
       assertThat(expectItem()).isEqualTo(2)
     }
-  }
-
-  @Test
-  fun `should not complete`() = runBlockingTest {
-    // Given
-    val hotFlow = channelFlow {
-      send(0)
-      awaitClose()
-    }
-
-    // When
-    val job = launch { hotFlow.collect() }
-
-    // Then
-    assertThat(job.isCompleted).isFalse
-    job.cancel()
   }
 
   @Test
