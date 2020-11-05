@@ -23,16 +23,21 @@ private fun generateFor(yearMonth: YearMonth) {
     .map { firstDate.plus(it, DateTimeUnit.DAY) }
     .filterNot { it.dayOfWeek == DayOfWeek.SATURDAY || it.dayOfWeek == DayOfWeek.SUNDAY }
     .flatMap {
+      val morning = it.atTime(hour = 9, minute = 0)
+      val beforeLunch = it.atTime(hour = 12, minute = 0)
+      val afterLunch = it.atTime(hour = 12, minute = 30)
+      val end = it.atTime(hour = 19, minute = 0)
+
       listOf(
         TimeEntry(
-          startDate = it.atTime(hour = 9, minute = 0).toString(),
-          endDate = it.atTime(hour = 12, minute = 0).toString(),
+          startDate = morning.toString(),
+          endDate = beforeLunch.toString(),
           location = "Bosch eBike Digital",
           type = "timer",
         ),
         TimeEntry(
-          startDate = it.atTime(hour = 12, minute = 30).toString(),
-          endDate = it.atTime(hour = 19, minute = 0).toString(),
+          startDate = afterLunch.toString(),
+          endDate = end.toString(),
           location = "Bosch eBike Digital",
           type = "timer",
         ),
