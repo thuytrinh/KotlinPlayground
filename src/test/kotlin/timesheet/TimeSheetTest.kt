@@ -26,7 +26,7 @@ private fun generateFor(yearMonth: YearMonth) {
       val morning = it.atTime(hour = 9, minute = 0)
       val beforeLunch = it.atTime(hour = 12, minute = 0)
       val afterLunch = it.atTime(hour = 12, minute = 30)
-      val end = it.atTime(hour = 19, minute = 0)
+      val end = it.atTime(hour = 17, minute = 30)
 
       listOf(
         TimeEntry(
