@@ -13,8 +13,9 @@ import java.time.temporal.ChronoUnit
 
 class TimeSheetTest {
   @Test
-  fun `time-sheet for September`() {
+  fun `generate time-sheets`() {
     generateFor(YearMonth.of(2020, Month.SEPTEMBER))
+    generateFor(YearMonth.of(2020, Month.OCTOBER))
   }
 }
 
@@ -38,14 +39,14 @@ private fun generateFor(yearMonth: YearMonth) {
       val formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME
       listOf(
         TimeEntry(
-          startDate = formatter.format(morning),
-          endDate = formatter.format(beforeLunch),
+          startDate = formatter.format(morning) + "Z",
+          endDate = formatter.format(beforeLunch) + "Z",
           location = "Bosch eBike Digital",
           type = "timer",
         ),
         TimeEntry(
-          startDate = formatter.format(afterLunch),
-          endDate = formatter.format(end),
+          startDate = formatter.format(afterLunch) + "Z",
+          endDate = formatter.format(end) + "Z",
           location = "Bosch eBike Digital",
           type = "timer",
         ),
