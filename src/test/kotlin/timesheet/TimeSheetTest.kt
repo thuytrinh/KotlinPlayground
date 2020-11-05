@@ -8,6 +8,7 @@ import org.junit.Test
 import java.io.File
 import java.time.DayOfWeek
 import java.time.YearMonth
+import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 
 class TimeSheetTest {
@@ -24,29 +25,27 @@ private fun generateFor(yearMonth: YearMonth) {
     .map { firstDate.plus(it, DateTimeUnit.DAY) }
     .filterNot { it.dayOfWeek == DayOfWeek.SATURDAY || it.dayOfWeek == DayOfWeek.SUNDAY }
     .map {
-      val morning = it.atTime(hour = 9, minute = 0)
-      val beforeLunch = it.atTime(hour = 12, minute = 0)
-      val afterLunch = it.atTime(hour = 12, minute = 30)
-      val end = it.atTime(hour = 17, minute = 30)
+      val morning = it.atTime(hour = 9, minute = 0, second = 0).toJavaLocalDateTime()
+      val beforeLunch = it.atTime(hour = 12, minute = 0, second = 0).toJavaLocalDateTime()
+      val afterLunch = it.atTime(hour = 12, minute = 30, second = 0).toJavaLocalDateTime()
+      val end = it.atTime(hour = 17, minute = 30, second = 0).toJavaLocalDateTime()
 
       val totalWorkingHoursInDay = ChronoUnit.HOURS.between(
-        morning.toJavaLocalDateTime(),
-        beforeLunch.toJavaLocalDateTime()
-      ) + ChronoUnit.HOURS.between(
-        afterLunch.toJavaLocalDateTime(),
-        end.toJavaLocalDateTime()
-      )
+        morning,
+        beforeLunch
+      ) + ChronoUnit.HOURS.between(afterLunch, end)
 
+      val formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME
       listOf(
         TimeEntry(
-          startDate = morning.toString(),
-          endDate = beforeLunch.toString(),
+          startDate = formatter.format(morning),
+          endDate = formatter.format(beforeLunch),
           location = "Bosch eBike Digital",
           type = "timer",
         ),
         TimeEntry(
-          startDate = afterLunch.toString(),
-          endDate = end.toString(),
+          startDate = formatter.format(afterLunch),
+          endDate = formatter.format(end),
           location = "Bosch eBike Digital",
           type = "timer",
         ),
