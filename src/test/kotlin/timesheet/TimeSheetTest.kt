@@ -16,6 +16,7 @@ class TimeSheetTest {
   fun `generate time-sheets`() {
     generateFor(YearMonth.of(2020, Month.SEPTEMBER))
     generateFor(YearMonth.of(2020, Month.OCTOBER))
+    generateFor(YearMonth.of(2020, Month.NOVEMBER))
   }
 }
 
