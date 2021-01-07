@@ -17,15 +17,19 @@ class TimeSheetTest {
     generateFor(YearMonth.of(2020, Month.SEPTEMBER))
     generateFor(YearMonth.of(2020, Month.OCTOBER))
     generateFor(YearMonth.of(2020, Month.NOVEMBER))
+    generateFor(
+      YearMonth.of(2020, Month.DECEMBER), holidays = (24..31).toList()
+    )
   }
 }
 
-private fun generateFor(yearMonth: YearMonth) {
-  val firstDate = LocalDate(year = yearMonth.year, month = yearMonth.month, 1)
+private fun generateFor(yearMonth: YearMonth, holidays: List<Int> = emptyList()) {
+  val firstDate = LocalDate(year = yearMonth.year, month = yearMonth.month, dayOfMonth = 1)
   val dayCount = firstDate.daysUntil(firstDate.plus(1, DateTimeUnit.MONTH))
   (0 until dayCount)
     .map { firstDate.plus(it, DateTimeUnit.DAY) }
     .filterNot { it.dayOfWeek == DayOfWeek.SATURDAY || it.dayOfWeek == DayOfWeek.SUNDAY }
+    .filterNot { it.dayOfMonth in holidays }
     .map {
       val morning = it.atTime(hour = 9, minute = 0, second = 0).toJavaLocalDateTime()
       val beforeLunch = it.atTime(hour = 12, minute = 0, second = 0).toJavaLocalDateTime()
