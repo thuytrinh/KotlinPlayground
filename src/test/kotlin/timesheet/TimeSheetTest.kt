@@ -17,9 +17,9 @@ class TimeSheetTest {
     generateFor(YearMonth.of(2020, Month.SEPTEMBER))
     generateFor(YearMonth.of(2020, Month.OCTOBER))
     generateFor(YearMonth.of(2020, Month.NOVEMBER))
-    generateFor(
-      YearMonth.of(2020, Month.DECEMBER), holidays = (24..31).toList()
-    )
+    generateFor(YearMonth.of(2020, Month.DECEMBER), holidays = (24..31).toList())
+    generateFor(YearMonth.of(2021, Month.JANUARY), holidays = listOf(1))
+    generateFor(YearMonth.of(2021, Month.FEBRUARY))
   }
 }
 
