@@ -8,7 +8,7 @@ import java.io.File
 import java.io.FileWriter
 import java.util.concurrent.Executors
 import kotlin.coroutines.CoroutineContext
-import kotlin.time.milliseconds
+import kotlin.time.seconds
 
 class LoggerTest {
   @Test
@@ -52,7 +52,7 @@ class Logger(
             if (shouldLog) {
               val line = "${action.message}\n"
               writer.write(line)
-              delay(500.milliseconds) // Just for debugging.
+              delay(1.seconds) // Just for debugging.
               writer.flush()
             }
           }

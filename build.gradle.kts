@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
   java
-  kotlin("jvm") version "1.4.20"
+  kotlin("jvm") version "1.4.30"
   kotlin("plugin.serialization") version "1.4.10"
 }
 
@@ -25,7 +25,7 @@ dependencies {
   testImplementation("junit", "junit", "4.12")
   testImplementation("org.assertj:assertj-core:3.17.2")
   testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2")
-  testImplementation("app.cash.turbine:turbine:0.3.0")
+  testImplementation("app.cash.turbine:turbine:0.4.1")
 }
 
 tasks.withType<KotlinCompile>().all {
