@@ -21,6 +21,12 @@ class TimeSheetTest {
     generateFor(YearMonth.of(2021, Month.JANUARY), holidays = listOf(1))
     generateFor(YearMonth.of(2021, Month.FEBRUARY))
     generateFor(YearMonth.of(2021, Month.MARCH))
+    generateFor(YearMonth.of(2021, Month.APRIL), holidays = listOf(2, 5))
+    generateFor(YearMonth.of(2021, Month.MAY), holidays = listOf(13, 14, 24))
+    generateFor(YearMonth.of(2021, Month.JUNE), holidays = listOf(3, 4))
+    generateFor(YearMonth.of(2021, Month.JULY), holidays = (10..23).toList())
+    generateFor(YearMonth.of(2021, Month.AUGUST), holidays = emptyList())
+    generateFor(YearMonth.of(2021, Month.SEPTEMBER), holidays = (15..30).toList())
   }
 }
 
